@@ -20,7 +20,7 @@ app = FastAPI(title="AI Shop API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173", "https://ai-shop-frontend-kn6b.onrender.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -199,7 +199,7 @@ def create_payment_intent(db: Session = Depends(get_db), current_user: models.Us
 
     intent = stripe.PaymentIntent.create(
         amount=amount_in_cents,
-        currency="usd",
+        currency="inr",
         metadata={"user_id": str(current_user.id)},
     )
 
